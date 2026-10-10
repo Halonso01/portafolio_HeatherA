@@ -4,10 +4,24 @@
  */
 package portafolio_HeatherA.repository;
 
+import portafolio_HeatherA.domain.Categoria;
+import java.util.List;
+import org.springframework.dara.jpa.repository.JpaRepository;
+import org.springfarmework.stereotype.Repository;
+
+
 /**
  *
  * @author heath
  */
-public interface CategoriaRepository {
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
+    Public List<Categoria> findByActivoTrue();
+    
+    
+    
+    
+    
+    
+    
     
 }
