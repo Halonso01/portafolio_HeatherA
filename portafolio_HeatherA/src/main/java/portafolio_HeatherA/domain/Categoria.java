@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistenceTable;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
@@ -33,7 +33,7 @@ public class Categoria implements Serializable {
     @Column(name = "id_categoria")
     private Integer IdCategoria;
     
-    @Column(unique = true, nullable - false, length = 50)
+    @Column(unique = true, nullable = false, length = 50)
     @NotNull
     @Size (max = 50)
     private String descripcion;
