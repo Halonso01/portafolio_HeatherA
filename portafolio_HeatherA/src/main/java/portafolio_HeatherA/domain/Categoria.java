@@ -40,7 +40,7 @@ public class Categoria implements Serializable {
     
     @Column(length = 1024)
     @Size(max = 1024)
-    private String rutaImage;
+    private String rutaImagen;
     
     @Column(name = "activo")
     private Boolean activo;

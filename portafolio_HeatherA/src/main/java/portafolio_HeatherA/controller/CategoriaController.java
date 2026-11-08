@@ -22,28 +22,19 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     //inyyeccion por constructor (no requiere @Autowired en spring moderno)
-    public CategoriaController(portafolio_HeatherA.service.CategoriaService categoriaService) {
+    public CategoriaController(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;
     }
-    
-    @GetMapping ("/listado")
-    public String inicio (Model model) {
+
+    @GetMapping("/listado")
+    public String inicio(Model model) {
         var categorias = categoriaService.getCategorias(false);
+
         model.addAttribute("categorias", categorias);
         model.addAttribute("totalCategorias", categorias.size());
-        return "/categoria/listado";
-    
-    
-    
-    
+
+        return "categoria/listado.categoria";
+
     }
-    
-    
-    
-    
-    
-    
 
 }
-
-
