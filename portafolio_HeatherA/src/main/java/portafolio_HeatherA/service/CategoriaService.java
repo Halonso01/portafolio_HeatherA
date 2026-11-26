@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 package portafolio_HeatherA.service;
 
 import portafolio_HeatherA.domain.Categoria;
 import portafolio_HeatherA.repository.CategoriaRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +17,7 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
     }
 
+    // Obtener todas las categorias o solamente las activas
     @Transactional(readOnly = true)
     public List<Categoria> getCategorias(boolean activo) {
         if (activo) {
@@ -28,25 +26,25 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    // Obtener una categoría por su ID
+    // Obtener una categoria por su identificador
     @Transactional(readOnly = true)
-    public Categoria getCategoria(Categoria categoria) {
-        return categoriaRepository.findById(categoria.getIdCategoria())
-                .orElse(null);
+    public Optional<Categoria> getCategoria(Integer idCategoria) {
+        return categoriaRepository.findById(idCategoria);
     }
 
-    // Guardar o modificar una categoría
+    // Guardar o modificar una categoria
     @Transactional
     public void save(Categoria categoria) {
         categoriaRepository.save(categoria);
     }
 
-    // Eliminar una categoría
+    // Eliminar una categoria por su identificador
     @Transactional
-    public void delete(Categoria categoria) {
+    public void delete(Integer idCategoria) {
+        Categoria categoria = categoriaRepository.findById(idCategoria)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "La categoria no existe"));
+
         categoriaRepository.delete(categoria);
     }
 }
-
-    
-
